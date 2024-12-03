@@ -33,7 +33,7 @@
 #include <string.h>
 #endif
 
-BEGIN_MIDI_NAMESPACE
+BEGIN_MIDI_LIGHT_NAMESPACE
 
 /*! The Message structure contains decoded data of a MIDI message
     read from the serial port with read()
@@ -46,12 +46,12 @@ struct Message
     */
     inline Message()
         : channel(0)
-        , type(MIDI_NAMESPACE::InvalidType)
+        , type(MIDI_LIGHT_NAMESPACE::InvalidType)
         , data1(0)
         , data2(0)
         , valid(false)
     {
-        memset(sysexArray, 0, sSysExMaxSize * sizeof(DataByte));
+        //memset(sysexArray, 0, sSysExMaxSize * sizeof(DataByte));
     }
 
     inline Message(const Message& inOther)
@@ -60,12 +60,12 @@ struct Message
         , data1(inOther.data1)
         , data2(inOther.data2)
         , valid(inOther.valid)
-        , length(inOther.length)
+        //, length(inOther.length)
     {
-        if (type == midi::SystemExclusive)
-        {
-            memcpy(sysexArray, inOther.sysexArray, sSysExMaxSize * sizeof(DataByte));
-        }
+        // if (type == MIDI_LIGHT_NAMESPACE::SystemExclusive)
+        // {
+        //     memcpy(sysexArray, inOther.sysexArray, sSysExMaxSize * sizeof(DataByte));
+        // }
     }
 
     /*! The maximum size for the System Exclusive array.
@@ -93,11 +93,11 @@ struct Message
      */
     DataByte data2;
 
-    /*! System Exclusive dedicated byte array.
-     \n Array length is stocked on 16 bits,
-     in data1 (LSB) and data2 (MSB)
-     */
-    DataByte sysexArray[sSysExMaxSize];
+    // /*! System Exclusive dedicated byte array.
+    //  \n Array length is stocked on 16 bits,
+    //  in data1 (LSB) and data2 (MSB)
+    //  */
+    // DataByte sysexArray[sSysExMaxSize];
 
     /*! This boolean indicates if the message is valid or not.
      There is no channel consideration here,
@@ -109,11 +109,11 @@ struct Message
      */
     unsigned length;
 
-    inline unsigned getSysExSize() const
-    {
-        const unsigned size = unsigned(data2) << 8 | data1;
-        return size > sSysExMaxSize ? sSysExMaxSize : size;
-    }
+    // inline unsigned getSysExSize() const
+    // {
+    //     const unsigned size = unsigned(data2) << 8 | data1;
+    //     return size > sSysExMaxSize ? sSysExMaxSize : size;
+    // }
     inline bool isSystemRealTime () const
     {
           return (type & 0xf8) == 0xf8;
@@ -128,4 +128,4 @@ struct Message
     }
 };
 
-END_MIDI_NAMESPACE
+END_MIDI_LIGHT_NAMESPACE
