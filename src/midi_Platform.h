@@ -29,7 +29,7 @@
 
 #include "midi_Defs.h"
 
-BEGIN_MIDI_NAMESPACE
+BEGIN_MIDI_LIGHT_NAMESPACE
 
 #if ARDUINO
 
@@ -48,4 +48,4 @@ struct DefaultPlatform
 
 #endif
 
-END_MIDI_NAMESPACE
+END_MIDI_LIGHT_NAMESPACE

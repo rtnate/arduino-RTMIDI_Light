@@ -29,16 +29,17 @@
 
 #include "midi_Defs.h"
 
-BEGIN_MIDI_NAMESPACE
+BEGIN_MIDI_LIGHT_NAMESPACE
 
-/*! \brief Default Settings for the MIDI Library.
+/*! \brief Default Settings for the MIDI Light Library.
 
+ 
  To change the default settings, don't edit them there, create a subclass and
  override the values in that subclass, then use the MIDI_CREATE_CUSTOM_INSTANCE
  macro to create your instance. The settings you don't override will keep their
  default value. Eg:
  \code{.cpp}
- struct MySettings : public MIDI_NAMESPACE::DefaultSettings
+ struct MySettings : public MIDI_LIGHT_NAMESPACE::DefaultSettings
  {
     static const unsigned SysExMaxSize = 1024; // Accept SysEx messages up to 1024 bytes long.
  };
@@ -58,6 +59,7 @@ struct DefaultSettings
     /*! NoteOn with 0 velocity should be handled as NoteOf.\n
     Set to true  to get NoteOff events when receiving null-velocity NoteOn messages.\n
     Set to false to get NoteOn  events when receiving null-velocity NoteOn messages.
+    This setting will not matter in the light library as note messages are unhandled
     */
     static const bool HandleNullVelocityNoteOnAsNoteOff = true;
 
@@ -68,19 +70,22 @@ struct DefaultSettings
     static const bool Use1ByteParsing = true;
 
     /*! Maximum size of SysEx receivable. Decrease to save RAM if you don't expect
-    to receive SysEx, or adjust accordingly.
+    to receive SysEx, or adjust accordingly.  Light library does not support
+    Sysex this is set to zero
     */
-    static const unsigned SysExMaxSize = 128;
+    static const unsigned SysExMaxSize = 0;
 
     /*! Global switch to turn on/off sender ActiveSensing
     Set to true to send ActiveSensing
     Set to false will not send ActiveSensing message (will also save memory)
+    Unsupported in the light library
     */
     static const bool UseSenderActiveSensing = false;
 
     /*! Global switch to turn on/off receiver ActiveSensing
     Set to true to check for message timeouts (via ErrorCallback)
     Set to false will not check if chained device are still alive (if they use ActiveSensing) (will also save memory)
+    ActiveSensing is unsupported in the light library
     */
     static const bool UseReceiverActiveSensing = false;
 
@@ -97,8 +102,11 @@ struct DefaultSettings
     (All Roland devices send Active Sensing every 250ms)
 
     Setting this field to 0 will disable sending MIDI active sensing.
+
+    Active sensing is not supported by the light library
     */
     static const uint16_t SenderActiveSensingPeriodicity = 0;
 };
 
-END_MIDI_NAMESPACE
+
+END_MIDI_LIGHT_NAMESPACE

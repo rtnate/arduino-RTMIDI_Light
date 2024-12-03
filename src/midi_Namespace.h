@@ -27,12 +27,12 @@
 
 #pragma once
 
-#define MIDI_NAMESPACE                  midi
-#define BEGIN_MIDI_NAMESPACE            namespace MIDI_NAMESPACE {
-#define END_MIDI_NAMESPACE              }
+#define MIDI_LIGHT_NAMESPACE                  midi_light
+#define BEGIN_MIDI_LIGHT_NAMESPACE            namespace MIDI_LIGHT_NAMESPACE {
+#define END_MIDI_LIGHT_NAMESPACE              }
 
-#define USING_NAMESPACE_MIDI            using namespace MIDI_NAMESPACE;
+#define USING_NAMESPACE_MIDI_LIGHT            using namespace MIDI_LIGHT_NAMESPACE;
 
-BEGIN_MIDI_NAMESPACE
+BEGIN_MIDI_LIGHT_NAMESPACE
 
-END_MIDI_NAMESPACE
+END_MIDI_LIGHT_NAMESPACE

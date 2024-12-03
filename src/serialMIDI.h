@@ -28,7 +28,7 @@
 
 #include "midi_Namespace.h"
 
-BEGIN_MIDI_NAMESPACE
+BEGIN_MIDI_LIGHT_NAMESPACE
 
 struct DefaultSerialSettings
 {
@@ -96,7 +96,7 @@ private:
     SerialPort& mSerial;
 };
 
-END_MIDI_NAMESPACE
+END_MIDI_LIGHT_NAMESPACE
 
 /*! \brief Create an instance of the library attached to a serial port.
  You can use HardwareSerial or SoftwareSerial for the serial port.
@@ -104,8 +104,8 @@ END_MIDI_NAMESPACE
  Then call midi2.begin(), midi2.read() etc..
  */
 #define MIDI_CREATE_INSTANCE(Type, SerialPort, Name)  \
-    MIDI_NAMESPACE::SerialMIDI<Type> serial##Name(SerialPort);\
-    MIDI_NAMESPACE::MidiInterface<MIDI_NAMESPACE::SerialMIDI<Type>> Name((MIDI_NAMESPACE::SerialMIDI<Type>&)serial##Name);
+    MIDI_LIGHT_NAMESPACE::SerialMIDI<Type> serial##Name(SerialPort);\
+    MIDI_LIGHT_NAMESPACE::MidiInterface<MIDI_LIGHT_NAMESPACE::SerialMIDI<Type>> Name((MIDI_LIGHT_NAMESPACE::SerialMIDI<Type>&)serial##Name);
 
 #if defined(ARDUINO_SAM_DUE) || defined(USBCON) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
     // Leonardo, Due and other USB boards use Serial1 by default.
@@ -126,5 +126,5 @@ END_MIDI_NAMESPACE
  @see MIDI_CREATE_INSTANCE
  */
 #define MIDI_CREATE_CUSTOM_INSTANCE(Type, SerialPort, Name, Settings)           \
-    MIDI_NAMESPACE::SerialMIDI<Type> serial##Name(SerialPort);\
-    MIDI_NAMESPACE::MidiInterface<MIDI_NAMESPACE::SerialMIDI<Type>, Settings> Name((MIDI_NAMESPACE::SerialMIDI<Type>&)serial##Name);
+    MIDI_LIGHT_NAMESPACE::SerialMIDI<Type> serial##Name(SerialPort);\
+    MIDI_LIGHT_NAMESPACE::MidiInterface<MIDI_LIGHT_NAMESPACE::SerialMIDI<Type>, Settings> Name((MIDI_LIGHT_NAMESPACE::SerialMIDI<Type>&)serial##Name);

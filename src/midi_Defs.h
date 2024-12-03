@@ -36,7 +36,7 @@
 typedef uint8_t byte;
 #endif
 
-BEGIN_MIDI_NAMESPACE
+BEGIN_MIDI_LIGHT_NAMESPACE
 
 // -----------------------------------------------------------------------------
 
@@ -130,8 +130,8 @@ struct Thru
     {
         Off                   = 0,  ///< Thru disabled (nothing passes through).
         Full                  = 1,  ///< Fully enabled Thru (every incoming message is sent back).
-        SameChannel           = 2,  ///< Only the messages on the Input Channel will be sent back.
-        DifferentChannel      = 3,  ///< All the messages but the ones on the Input Channel will be sent back.
+        //SameChannel           = 2,  ///< Only the messages on the Input Channel will be sent back.
+        //DifferentChannel      = 3,  ///< All the messages but the ones on the Input Channel will be sent back.
     };
 };
 
@@ -244,4 +244,4 @@ struct RPN
     };
 };
 
-END_MIDI_NAMESPACE
+END_MIDI_LIGHT_NAMESPACE
